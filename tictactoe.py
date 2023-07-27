@@ -4,6 +4,7 @@ Tic Tac Toe Player
 
 import math
 from copy import deepcopy
+from random import randint
 
 X = "X"
 O = "O"
@@ -161,7 +162,14 @@ def utility(board):
 
 
 def minimax(board):
-
+    if board == initial_state():
+        starters = {}
+        i = 0
+        for action in actions(board):
+            starters[i] = action
+            i += 1
+        return starters[randint(0 , 8)]
+        
     #minimax func should return in tuple format not an integer computation of the minimum and maximum done saperately
     # recursively call minimax function until actions set is empty or terminal state is reached
     #if action set is empty return cordinates and store results in an array
@@ -181,22 +189,22 @@ def minimax(board):
     #     return None
     
     # X player
-    if player == X:
+    if player(board) == X:
         d = {}
         for action in actions(board):
             # arr.append(minimax(result(board , action)))
             # action_set.append(action)
             d[action] = utility(result(board , action))
 
-        print(d)
+        # print(d)
         current = (0 , 0)
         val = -100
         for key in d:
+            # print(d[key] , val)
             if d[key] > val:
-                print(val , "hi")
                 current = key
                 val = d[key]
-        print(current)
+        # print(current)
         return current    
         # return max(arr)
 
@@ -207,14 +215,14 @@ def minimax(board):
             # action_set.append(action)
             d[action] = utility(result(board , action))
             
-        print(d)
+        # print(d)
         current = (0 , 0)
         val = 100
         for key in d:
             if d[key] < val:
                 current = key
                 val = d[key]
-        print(current)
+        # print(current)
         return current
         # raise NotImplementedError
 # create a data structure
