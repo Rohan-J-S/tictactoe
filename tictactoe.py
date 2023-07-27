@@ -124,6 +124,10 @@ def terminal(board):
     Returns True if game is over, False otherwise.
     """
     if winner(board) == X or winner(board) == O:
+        if winner(board) == X:
+            print("x wins")
+        else:
+            print("o wins")
         return True 
     for row in board:
         if EMPTY in row:
@@ -183,10 +187,17 @@ def minimax(board):
             # arr.append(minimax(result(board , action)))
             # action_set.append(action)
             d[action] = utility(result(board , action))
-        # print(d)
-            
-            
-        return max(d)
+
+        print(d)
+        current = (0 , 0)
+        val = -100
+        for key in d:
+            if d[key] > val:
+                print(val , "hi")
+                current = key
+                val = d[key]
+        print(current)
+        return current    
         # return max(arr)
 
     else:
@@ -196,7 +207,14 @@ def minimax(board):
             # action_set.append(action)
             d[action] = utility(result(board , action))
             
-        # print(d)
-        return max(d)
+        print(d)
+        current = (0 , 0)
+        val = 100
+        for key in d:
+            if d[key] < val:
+                current = key
+                val = d[key]
+        print(current)
+        return current
         # raise NotImplementedError
 # create a data structure
