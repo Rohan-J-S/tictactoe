@@ -110,8 +110,8 @@ while True:
         titleRect.center = ((width / 2), 30)
         screen.blit(title, titleRect)
 
-        if player == None:
-            break
+        # if player == None:
+        #     break
         # Check for AI move
         if user != player and not game_over:
             if ai_turn:
